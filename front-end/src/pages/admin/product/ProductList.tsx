@@ -39,6 +39,7 @@ interface DataType {
   description: string;
   categoryId: CategoryIdType[];
   stock: number;
+  sale: number;
   publishedAt: Date;
   updatedAt: Date;
   createdAt: Date;
@@ -204,6 +205,11 @@ const ProductList = () => {
       key: "stock",
     },
     {
+      title: "Sale %",
+      dataIndex: "sale",
+      key: "sale",
+    },
+    {
       title: "Published At",
       dataIndex: "publishedAt",
       key: "publishedAt",
@@ -227,7 +233,7 @@ const ProductList = () => {
           <>
             <Popconfirm
               placement="topLeft"
-              title={"Are you fucking sure?"}
+              title={"Are you  sure?"}
               onConfirm={() => confirm(id)}
               okText="Yes"
               cancelText="No"
@@ -262,6 +268,7 @@ const ProductList = () => {
     publishedAt: item.publishedAt,
     updatedAt: item.updatedAt,
     createdAt: item.createdAt,
+    sale: item.sale,
   }));
   return (
     <>
@@ -280,7 +287,7 @@ const ProductList = () => {
         <>
           <Popconfirm
             placement="topRight"
-            title={"Are you fucking sure?"}
+            title={"Are you  sure?"}
             okText="Yes"
             cancelText="No"
           >

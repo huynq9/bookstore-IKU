@@ -171,7 +171,7 @@ const Checkout = () => {
           {getCart?.items.map((itemCart) => (
             <div
               key={itemCart.book._id}
-              className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5"
+              className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5 relative"
             >
               <div className="flex w-2/5">
                 {" "}
@@ -186,7 +186,13 @@ const Checkout = () => {
                   <span className="font-bold text-sm truncate">
                     {itemCart?.book?.title}
                   </span>
-                  <span className="text-red-500 text-xs">Apple</span>
+                  {itemCart?.book?.sale > 0 ? (
+                    <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">
+                      {itemCart?.book?.sale}% OFF
+                    </span>
+                  ) : (
+                    ""
+                  )}
                   <Button
                     onClick={() =>
                       handleRemove(itemCart.book?._id ? itemCart.book?._id : "")
@@ -217,7 +223,7 @@ const Checkout = () => {
                 />
               </div>
               <span className="text-center w-1/5  text-sm">
-                {itemCart.book.discount.toLocaleString("vi-VN")}₫
+                {itemCart.book.price.toLocaleString("vi-VN")}₫
               </span>
               <span className="text-center w-1/5  text-sm">
                 {(itemCart.book.discount * itemCart.quantity).toLocaleString(
