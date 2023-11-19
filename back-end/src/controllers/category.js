@@ -1,10 +1,10 @@
 import Book from "../models/book.js";
 import Category from "../models/category.js";
-import { categorySchema } from "../validations/category.js";
+import { categorySchema } from "../schemas/category.js";
 
 export const getCategories = async (req, res) => {
   try {
-    const categories = await Category.find().populate('books');
+    const categories = await Category.find().populate("books");
     if (categories.length === 0) {
       return res.status(400).json({
         message: "khong tim thay san pham !",
@@ -21,15 +21,13 @@ export const getCategories = async (req, res) => {
 };
 export const getCategory = async (req, res) => {
   try {
-    const category = await Category.findById(req.params.id).populate('books');
+    const category = await Category.findById(req.params.id).populate("books");
     if (!category) {
       return res.status(404).json({
         message: "khong tim thay danh muc !",
       });
     }
-    return res.status(200).json(
-      category,
-    );
+    return res.status(200).json(category);
   } catch (err) {
     return res.status(500).json({
       message: "loi server!",

@@ -1,5 +1,5 @@
 import Book from "../models/book.js";
-import { bookSchema } from "../validations/book.js";
+import { bookSchema } from "../schemas/book.js";
 import Category from "../models/category.js";
 import Author from "../models/author.js";
 import mongoose, { isValidObjectId } from "mongoose";
@@ -86,10 +86,10 @@ export const getTopSellingBooks = async (req, res) => {
         },
       },
       {
-        $sort: { soldCount: -1 }, 
+        $sort: { soldCount: -1 },
       },
       {
-        $limit: 10, 
+        $limit: 10,
       },
     ]);
 
@@ -110,54 +110,61 @@ export const getTopSellingBooks = async (req, res) => {
 };
 export const getBook = async (req, res) => {
   try {
-    const bookId =req.params.id
+    const bookId = req.params.id;
     console.log(bookId);
     const books = await Book.aggregate([
       {
         $match: {
           $expr: {
-            $eq: ['$_id', { $toObjectId: bookId }],
+            $eq: ["$_id", { $toObjectId: bookId }],
           },
         },
       },
       {
         $lookup: {
-          from: 'reviews',
-          localField: '_id',
-          foreignField: 'productId',
-          as: 'reviews',
+          from: "reviews",
+          localField: "_id",
+          foreignField: "productId",
+          as: "reviews",
         },
       },
       {
         $lookup: {
-          from: 'categories',
-          localField: 'categoryId',
-          foreignField: '_id',
-          as: 'categoryId',
+          from: "categories",
+          localField: "categoryId",
+          foreignField: "_id",
+          as: "categoryId",
         },
       },
       {
         $lookup: {
-          from: 'authors',
-          localField: 'authorId',
-          foreignField: '_id',
-          as: 'authorId',
+          from: "authors",
+          localField: "authorId",
+          foreignField: "_id",
+          as: "authorId",
         },
       },
       {
         $addFields: {
-          averageRating: { $avg: '$reviews.rating' },
+          averageRating: { $avg: "$reviews.rating" },
         },
       },
     ]);
+    const updateViews = await Book.findByIdAndUpdate(
+      bookId,
+      {
+        $inc: { views: 1 },
+      },
+      {
+        new: true,
+      }
+    );
     if (!books) {
       return res.status(400).json({
         message: "khong tim thay san pham !",
       });
     }
-    return res.status(200).json(
-       books[0],
-    );
+    return res.status(200).json(books[0]);
   } catch (err) {
     return res.status(500).json({
       message: "loi server!ok",
@@ -171,7 +178,7 @@ export const getBooksByAuthor = async (req, res) => {
     const authorId = req.params.authorId;
 
     const booksWithReviews = await Book.aggregate([
-      { $match: { authorId: (authorId) } },
+      { $match: { authorId: authorId } },
       {
         $lookup: {
           from: "reviews",
@@ -234,11 +241,13 @@ export const getRelatedBooks = async (req, res) => {
         },
       ]).limit(6);
 
-      const filteredRelatedBooks = relatedBooks.filter((book) => book._id.toString() !== bookId);
+      const filteredRelatedBooks = relatedBooks.filter(
+        (book) => book._id.toString() !== bookId
+      );
 
       res.status(200).json({
         message: "Lấy danh sách sách liên quan thành công",
-        data: filteredRelatedBooks ,
+        data: filteredRelatedBooks,
       });
     } else {
       res.status(404).json({
@@ -258,7 +267,7 @@ export const getBooksByCategory = async (req, res) => {
     const categoryId = req.params.categoryId;
 
     const booksWithReviews = await Book.aggregate([
-      { $match: { categoryId: (categoryId) } },
+      { $match: { categoryId: categoryId } },
       {
         $lookup: {
           from: "reviews",
@@ -291,7 +300,6 @@ export const getBooksByCategory = async (req, res) => {
     });
   }
 };
-
 
 export const create = async (req, res) => {
   try {
@@ -382,7 +390,7 @@ export const update = async (req, res) => {
         message: error.details[0].message,
       });
     }
-    
+
     const bookData = req.body;
     const authorNames = bookData.authorName;
     const authorIds = [];
@@ -411,7 +419,9 @@ export const update = async (req, res) => {
     bookData.authorId = authorIds;
     bookData.updateAt = new Date();
 
-    const updatedBook = await Book.findByIdAndUpdate(req.params.id, bookData, { new: true });
+    const updatedBook = await Book.findByIdAndUpdate(req.params.id, bookData, {
+      new: true,
+    });
 
     if (!updatedBook) {
       return res.status(404).json({
@@ -429,13 +439,19 @@ export const update = async (req, res) => {
     for (const oldCategory of oldCategories) {
       if (!newCategories.includes(oldCategory._id.toString())) {
         // Xóa ID sách ra khỏi danh sách sách trong danh mục cũ
-        oldCategory.books = oldCategory.books.filter(bookId => bookId.toString() !== req.params.id);
+        oldCategory.books = oldCategory.books.filter(
+          (bookId) => bookId.toString() !== req.params.id
+        );
         await oldCategory.save();
       }
     }
 
     for (const newCategory of newCategories) {
-      if (!oldCategories.find(oldCategory => oldCategory._id.toString() === newCategory)) {
+      if (
+        !oldCategories.find(
+          (oldCategory) => oldCategory._id.toString() === newCategory
+        )
+      ) {
         // Thêm ID sách vào danh sách sách trong danh mục mới
         const category = await Category.findById(newCategory);
         if (category) {

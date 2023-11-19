@@ -1,9 +1,11 @@
 import React from "react";
 
-interface Props {}
-
-const DashBoard = (props: Props) => {
-  return <div></div>;
+const Dashboard = () => {
+  return (
+    <div>
+      <img src="/logo.png" alt="" />
+    </div>
+  );
 };
 
-export default DashBoard;
+export default Dashboard;

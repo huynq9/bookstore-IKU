@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import Category from "./category.js";
 
 const bookSchema = new mongoose.Schema(
   {
@@ -27,11 +26,9 @@ const bookSchema = new mongoose.Schema(
       {
         url: {
           type: String,
-          // required: true
         },
         publicId: {
           type: String,
-          // required: true
         },
       },
     ],
@@ -54,9 +51,18 @@ const bookSchema = new mongoose.Schema(
     soldCount: {
       type: Number,
       default: 0,
-      require: true
+      require: true,
     },
-    rating:{
+    sale: {
+      type: Number,
+      default: 0,
+    },
+    views: {
+      type: Number,
+      default: 0,
+    },
+
+    rating: {
       type: mongoose.Schema.Types.Mixed,
     },
   },
@@ -67,9 +73,13 @@ const bookSchema = new mongoose.Schema(
 );
 
 bookSchema.pre("save", function (next) {
-  // Kiểm tra nếu trường `discount` chưa được thiết lập hoặc là null, hãy thiết lập nó bằng trường `price`
+  //discout sẽ bằng số tiền nhân với sale
   if (typeof this.discount !== "number" || isNaN(this.discount)) {
-    this.discount = this.price;
+    if (this.sale === 0) {
+      this.discount = this.price;
+    } else {
+      this.discount = (this.price / 100) * this.sale;
+    }
   }
   next();
 });

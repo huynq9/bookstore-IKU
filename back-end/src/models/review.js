@@ -4,12 +4,12 @@ const reviewSchema = new mongoose.Schema(
   {
     productId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Product", // Tham chiếu đến model sản phẩm
+      ref: "Product",
       required: true,
     },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User", // Tham chiếu đến model người dùng
+      ref: "User",
       required: true,
     },
     rating: {
@@ -24,11 +24,9 @@ const reviewSchema = new mongoose.Schema(
       {
         url: {
           type: String,
-          // required: true
         },
         publicId: {
           type: String,
-          // required: true
         },
       },
     ],
@@ -39,5 +37,4 @@ const reviewSchema = new mongoose.Schema(
   }
 );
 
-// Tạo model cho đánh giá sản phẩm
 export default mongoose.model("Review", reviewSchema);

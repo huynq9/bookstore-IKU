@@ -1,0 +1,46 @@
+{
+    "status": "success",
+    "data": {
+        "email": "huydang2312003@gmail.com",
+        "phone": "0327963018",
+        "address": "S\u1ed1 53 Ng\u00f5 686, \u0110\u01b0\u1eddng Chi\u1ebfn Th\u1eafng, H\u00e0 \u0110\u00f4ng, H\u00e0 N\u1ed9i",
+        "fullname": "huydang2312003@gmail.com",
+        "shipping_address": {
+            "city": "H\u00e0 N\u1ed9i",
+            "district": "Qu\u1eadn H\u00e0 \u0110\u00f4ng",
+            "ward": "Ph\u01b0\u1eddng V\u0103n Qu\u00e1n"
+        },
+        "birthday": "",
+        "last_login": "2023-10-18 18:42:38",
+        "height": null,
+        "weight": null,
+        "discount_code_birthday": null,
+        "gender": null,
+        "_id": "63815a0fd42e745fd00b7584",
+        "addresses": [
+            {
+                "_id": "652fc50175baf572200828f5",
+                "fullname": "huydang2312003@gmail.com",
+                "phone": "0327963018",
+                "address": "Ng\u00f5 686, Chi\u1ebfn Th\u1eafng",
+                "city": "H\u1ed3 Ch\u00ed Minh",
+                "district": null,
+                "user_id": "63815a0fd42e745fd00b7584",
+                "default": false,
+                "updated_at": "2023-10-18 18:44:01",
+                "created_at": "2023-10-18 18:44:01"
+            },
+            {
+                "_id": "638165dfd7b422aacd187f6d",
+                "user_id": "63815a0fd42e745fd00b7584",
+                "city": "H\u00e0 N\u1ed9i",
+                "created_at": "2022-11-26 08:03:25",
+                "district": "Qu\u1eadn H\u00e0 \u0110\u00f4ng",
+                "fullname": "",
+                "mobile": "0327963018",
+                "updated_at": "2023-09-20 12:06:23",
+                "ward": "Ph\u01b0\u1eddng V\u0103n Qu\u00e1n"
+            }
+        ]
+    }
+}

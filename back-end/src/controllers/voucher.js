@@ -1,6 +1,6 @@
 import Book from "../models/book.js";
-import Voucher from "../models/voucher.js";
-import { voucherValidationSchema } from "../validations/voucher.js";
+import Voucher from "../models/coupon.js";
+import { voucherValidationSchema } from "../schemas/voucher.js";
 
 export const getVouchers = async (req, res) => {
   try {
@@ -30,9 +30,7 @@ export const getVoucherById = async (req, res) => {
         message: "Không tìm thấy voucher!",
       });
     }
-    return res.status(200).json(
-     voucher,
-    );
+    return res.status(200).json(voucher);
   } catch (err) {
     return res.status(500).json({
       message: "Lỗi server!",

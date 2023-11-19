@@ -1,0 +1,231 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Pacifico";
+  src: url("../../../src/assets/fonts/Pacifico/Pacifico-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Lato";
+  src: url("../../../src/assets/fonts/Lato/Lato-Black.ttf") format("truetype");
+}
+/* *{
+    border: 0.0001px solid red;
+} */
+
+body {
+  padding: 0 0 0 0;
+  margin: 0 auto;
+  font-family: "Poppins", sans-serif;
+}
+a {
+  padding-top: 8px;
+}
+button {
+  font-family: "Lato";
+}
+/* @media (min-width: 320) {
+  .logo {
+    display: none;
+  }
+} */
+.search-home:focus {
+  box-shadow: none;
+}
+
+/* .fit-slider-img{
+    width: 830px;
+} */
+
+.slider-and-banner > .banner {
+  justify-content: space-between;
+}
+.nav-header li:hover {
+  border-radius: 3;
+  /* background-color: #cccc; */
+  color: rgb(39, 72, 4);
+}
+
+.font-pacifico {
+  font-family: "Pacifico";
+}
+.font-lato {
+  font-family: "Lato";
+}
+
+.tabs {
+  display: flex;
+  position: relative;
+}
+.tabs .line {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 6px;
+  border-radius: 15px;
+  background-color: rgb(39, 72, 4);
+  transition: all 0.2s ease;
+}
+.tab-item {
+  min-width: max-content;
+  text-align: center;
+  color: white;
+  background-color: rgb(39, 72, 4);
+  border-bottom: 5px solid transparent;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.tab-icon {
+  font-size: 24px;
+  width: 32px;
+  position: relative;
+  top: 2px;
+}
+.tab-item:hover {
+  opacity: 1;
+  color: white;
+  background-color: rgb(39, 72, 4);
+  border-color: rgb(43, 82, 2);
+}
+.tab-item.active {
+  opacity: 1;
+}
+.tab-pane {
+  display: none;
+}
+.tab-pane.active {
+  display: block;
+}
+.row {
+  display: block;
+}
+.row > .rev-sold {
+  justify-content: space-evenly;
+}
+
+.quick-add {
+  height: 0px;
+  bottom: -10%;
+  transition: bottom 0.4s ease-in-out;
+}
+
+.book-img:hover + .quick-add {
+  height: auto;
+  background-color: rgb(255, 255, 255);
+  color: rgb(39, 72, 4);
+  bottom: 0;
+}
+:hover.quick-add {
+  height: auto;
+  background-color: rgb(255, 255, 255);
+  color: rgb(39, 72, 4);
+  bottom: 0;
+}
+.wrap-book-addcart {
+  max-width: 53%;
+}
+/* .image-slider img {
+  max-width: 140px;
+} */
+/* .slick-initialized .slick-slide {
+  gapt:16px;
+} */
+
+.slick-prev {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgb(39, 72, 4);
+  font-size: xx-large;
+  z-index: 2;
+  border: none;
+  left: -20px;
+}
+.slick-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgb(39, 72, 4);
+  font-size: xx-large;
+  z-index: 2;
+  border: none;
+  right: -20px;
+}
+/* .slick-slide .row{
+  marr
+} */
+
+#dropdownHover {
+  position: absolute;
+  z-index: 3; /* Đặt Z-index lớn hơn các phần tử khác trên trang */
+}
+
+.filter-sidebar{
+  width: 20%;
+  border-right: 1px solid #cccc;
+}
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #f7f4ed;
+    display: none;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #f7f4ed;
+    border-radius: 100vh;
+    border: 3px solid #f6f7ed;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #0c6813;
+  }
+}
+.login-form{
+  padding: 10%;
+}
+.login-form button{
+  margin: 4px;
+}
+input[type=text] {
+  border-radius: 6px;
+  line-height: 1.5714285714285714;
+  width: 100%;
+  min-width: 0;
+  padding: 4px 11px;
+  color: rgba(0, 0, 0, 0.88);
+  font-size: 14px;
+  line-height: 1.5714285714285714;
+  background-color: #ffffff;
+  border-color: #d9d9d9;
+}
+.ant-modal-title{
+  display: flex;
+  justify-content: center;
+}
+.ant-form-item-row{
+  justify-content: center;
+}
+.slick-slide {
+  height: auto;
+}
+.slick-track {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+.slick-slide .slick-active>div{
+height: max-content;
+}
+.slick-slide .row{
+  min-height: 312px;
+}

@@ -1,0 +1,30 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+/* body {margin:0;padding:0}
+
+.ant-picker-ok button {
+    background-color: #1677FF;
+}
+.slick-slide {
+    height: auto; 
+  }
+  .slick-track {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+  } */
+  .ant-dropdown-trigger{
+    padding-top: 0;
+  }
+  .wrapper-logo-bar .ant-select-selector{
+border: none;
+height: 10px;
+border-radius: 9999px;
+  }
+  :where(.css-dev-only-do-not-override-pr0fja).ant-select-single{
+    height: 39px;
+
+  }
